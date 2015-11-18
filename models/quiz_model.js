@@ -1,4 +1,6 @@
 var AbstractQuiz = require('../models/abstract_quiz_model.js');
+var PreguntaCorta = require('../models/pregunta.js');
+var PreguntaLarga = require('../models/pregunta.js');
 
 function Quiz() {
 
@@ -6,14 +8,13 @@ function Quiz() {
 
   this.q.push(
 
-    { pregunta: '¿Capital de Italia?',
+    { pregunta: new PreguntaCorta('¿Capital de Italia?'),
       respuesta: function(x) {
         return (/^\s*roma\s*$/i).exec(x);
       }
     },
 
-    {
-      pregunta: '¿Quien reinaba en España cuando se descubrió América?',
+    { pregunta: new PreguntaLarga('¿Quien reinaba en España cuando se descubrió América?'),
       respuesta: function(x) {
         if ((/\b(Isabel\s+y?\s*Fernando)|(Fernando\s+[ey]?\s*Isabel)\b/i).exec(x)) {
           return true;
@@ -23,13 +24,13 @@ function Quiz() {
       },
     },
 
-    { pregunta: '¿Cuál es el último campeón de la Champions League?',
+    { pregunta: new PreguntaCorta('¿Cuál es el último campeón de la Champions League?'),
       respuesta: function(x) {
         return (/\s*barcelona\s*$/i).exec(x);
       }
     },
 
-    { pregunta: '¿Quién es el protagonista en la película "The Imitation Game"?',
+    { pregunta: new PreguntaCorta('¿Quién es el protagonista en la película "The Imitation Game"?'),
       respuesta: function(x) {
         return (/\s*alan turing\s*$/i).exec(x);
       }
@@ -38,8 +39,8 @@ function Quiz() {
     { /* Código inseguro. ¡No ejecute esta pregunta salvo en un
          entorno en el que el código del "alumno" sea fiable!
        */
-      pregunta: 'Escriba una función JavaScript de nombre <tt>square</tt> '+
-      'que recibe un número y devuelve el cuadrado',
+      pregunta: new PreguntaLarga('Escriba una función JavaScript de nombre <tt>square</tt> '+
+      'que recibe un número y devuelve el cuadrado'),
       respuesta: function(x) {
         try {
           eval(x); /* DANGER DANGER DANGER */
@@ -62,7 +63,7 @@ function Quiz() {
       var n1 = Math.randomInt(9)+1;
       var n2 = Math.randomInt(9)+1;
       self.q.push(
-        { pregunta: '¿ '+n1+'x'+n2+" ?",
+        { pregunta: new PreguntaCorta('¿ '+n1+'x'+n2+" ?"),
           respuesta: function(x) {
             return (x == n1*n2);
         }
@@ -79,7 +80,11 @@ Quiz.prototype.numQuestions = function() {
 }
 
 Quiz.prototype.getQ = function(x){
-  return this.q[x]['pregunta'];
+  return this.q[x]['pregunta'].get_pregunta();
+}
+
+Quiz.prototype.getQuestion = function(x){
+  return x['pregunta'].get_pregunta();
 }
 
 module.exports = Quiz;
