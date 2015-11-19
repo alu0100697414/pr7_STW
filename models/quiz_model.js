@@ -1,6 +1,6 @@
 var AbstractQuiz = require('../models/abstract_quiz_model.js');
-var PreguntaCorta = require('../models/pregunta.js');
-var PreguntaLarga = require('../models/pregunta.js');
+var PreguntaCorta = require('../models/pregunta_corta.js');
+var PreguntaLarga = require('../models/pregunta_larga.js');
 
 function Quiz() {
 
@@ -85,6 +85,10 @@ Quiz.prototype.getQ = function(x){
 
 Quiz.prototype.getQuestion = function(x){
   return x['pregunta'].get_pregunta();
+}
+
+Quiz.prototype.getType = function(x){
+  return x['pregunta'].get_tipo();
 }
 
 module.exports = Quiz;

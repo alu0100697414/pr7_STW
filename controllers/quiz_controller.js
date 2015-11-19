@@ -6,7 +6,9 @@ var current = quiz.randomQuestion();
 exports.question = function(req,res) {
   current = quiz.randomQuestion();
   current_new = quiz.getQuestion(current);
-  res.render('quizes/question', {pregunta: current_new});
+  tipo = quiz.getType(current);
+  
+  res.render('quizes/question', {pregunta: current_new, tip: tipo});
 };
 
 exports.answer = function(req, res) {
