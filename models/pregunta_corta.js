@@ -14,7 +14,9 @@ PreguntaCorta.prototype.constructor = PreguntaCorta;
 PreguntaCorta.prototype.get_tipo = function(){
   return this.tipo_;
 }
+
 PreguntaCorta.prototype.get_pregunta = function(){
   return this.pregunta_;
 }
+
 module.exports = PreguntaCorta;

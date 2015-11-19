@@ -1,6 +1,7 @@
 var AbstractQuiz = require('../models/abstract_quiz_model.js');
 var PreguntaCorta = require('../models/pregunta_corta.js');
 var PreguntaLarga = require('../models/pregunta_larga.js');
+var Respuesta = require('../models/respuesta.js');
 
 function Quiz() {
 
@@ -9,9 +10,11 @@ function Quiz() {
   this.q.push(
 
     { pregunta: new PreguntaCorta('¿Capital de Italia?'),
-      respuesta: function(x) {
-        return (/^\s*roma\s*$/i).exec(x);
-      }
+      respuesta: new Respuesta(/^\s*roma\s*$/i)
+    },
+
+    { pregunta: new PreguntaCorta('¿En que año se descubrió América?'),
+      respuesta: new Respuesta(1492)
     },
 
     { pregunta: new PreguntaLarga('¿Quien reinaba en España cuando se descubrió América?'),
