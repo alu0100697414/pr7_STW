@@ -56,11 +56,11 @@ function Quiz() {
       var n1 = Math.randomInt(9)+1;
       var n2 = Math.randomInt(9)+1;
       self.q.push(
-        { pregunta: new PreguntaCorta('¿ '+n1+'x'+n2+" ?"),
-          respuesta: new Respuesta (function(x) {
+        { pregunta: new PreguntaCorta('¿ '+n1+'x'+n2+"= ?"),
+          respuesta: new Respuesta(function(x) {
             return (x == n1*n2);
         })
-      })
+      });
     })();
   }
 }

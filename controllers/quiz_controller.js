@@ -14,7 +14,7 @@ exports.question = function(req,res) {
 exports.answer = function(req, res) {
   var c = 'Incorrecto';
   if (current.respuesta(req.query.respuesta)) { c = 'Correcto'; }
-  res.render('quizes/answer', {respuesta: c})
+  res.render('quizes/answer', {respuesta: c});
 };
 
 exports.questions = function(req,res) {
