@@ -1,16 +1,19 @@
 function Respuesta(x){
-  
-  var f;
 
+  // Si es entero o cadena
   if(typeof(x)==='string' || typeof(x)==='number'){
-    f = function(respuesta){ return respuesta === x ; }
+    return function(res){return res === x;};
   }
 
+  // Si es una expresión regular
   else if(x instanceof RegExp === true){
-    f = function(respuesta){ return x.exec(respuesta)}
+    return function(res){return res.match(x);};
+  }
+
+  // Si es una funcion
+  else if (x.__proto__.toString() === "function () {}") {
+    return x;
   }
 }
 
 module.exports = Respuesta;
-
-// http://stackoverflow.com/questions/4339288/typeof-for-regexp

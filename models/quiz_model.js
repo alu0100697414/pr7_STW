@@ -14,29 +14,19 @@ function Quiz() {
     },
 
     { pregunta: new PreguntaCorta('¿En que año se descubrió América?'),
-      respuesta: new Respuesta(1492)
+      respuesta: new Respuesta('1492')
     },
 
     { pregunta: new PreguntaLarga('¿Quien reinaba en España cuando se descubrió América?'),
-      respuesta: function(x) {
-        if ((/\b(Isabel\s+y?\s*Fernando)|(Fernando\s+[ey]?\s*Isabel)\b/i).exec(x)) {
-          return true;
-        }
-        if ((/\breyes\s+cat[oó]licos\b/i).exec(x)) { return true; }
-        return false;
-      },
+      respuesta: new Respuesta(/\b(Isabel\s+y?\s*Fernando)|(Fernando\s+[ey]?\s*Isabel)|(reyes\s+cat[oó]licos)\b/i)
     },
 
     { pregunta: new PreguntaCorta('¿Cuál es el último campeón de la Champions League?'),
-      respuesta: function(x) {
-        return (/\s*barcelona\s*$/i).exec(x);
-      }
+      respuesta: new Respuesta(/\s*barcelona\s*$/i)
     },
 
     { pregunta: new PreguntaCorta('¿Quién es el protagonista en la película "The Imitation Game"?'),
-      respuesta: function(x) {
-        return (/\s*alan turing\s*$/i).exec(x);
-      }
+      respuesta: new Respuesta(/\s*alan turing\s*$/i)
     },
 
     { /* Código inseguro. ¡No ejecute esta pregunta salvo en un
@@ -44,7 +34,7 @@ function Quiz() {
        */
       pregunta: new PreguntaLarga('Escriba una función JavaScript de nombre <tt>square</tt> '+
       'que recibe un número y devuelve el cuadrado'),
-      respuesta: function(x) {
+      respuesta: new Respuesta( function(x) {
         try {
           eval(x); /* DANGER DANGER DANGER */
           var z = Math.floor(Math.random()*100);
@@ -54,7 +44,7 @@ function Quiz() {
           return false;
         }
         return false;
-      }
+      })
     }
   );
 
@@ -67,9 +57,9 @@ function Quiz() {
       var n2 = Math.randomInt(9)+1;
       self.q.push(
         { pregunta: new PreguntaCorta('¿ '+n1+'x'+n2+" ?"),
-          respuesta: function(x) {
+          respuesta: new Respuesta (function(x) {
             return (x == n1*n2);
-        }
+        })
       })
     })();
   }
