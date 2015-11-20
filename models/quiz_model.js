@@ -80,8 +80,8 @@ Quiz.prototype.getQuestion = function(x){
   return x['pregunta'].get_pregunta();
 }
 
-Quiz.prototype.getType = function(x){
-  return x['pregunta'].get_tipo();
+Quiz.prototype.getArea = function(x){
+  return x['pregunta'].get_area();
 }
 
 module.exports = Quiz;

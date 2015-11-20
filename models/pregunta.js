@@ -1,6 +1,6 @@
 function Pregunta() {
   this.pregunta_;
-  this.tipo_;
+  this.area_;
 }
 
 module.exports = Pregunta;

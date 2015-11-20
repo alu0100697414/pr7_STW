@@ -4,15 +4,15 @@ function PreguntaLarga(x) {
   Pregunta.call(this);
 
   this.pregunta_ = x;
-  this.tipo_ = "larga";
+  this.area_ = "<textarea name='respuesta' placeholder='Responda aquí' rows='4' cols='50'></textarea>";
 }
 
 PreguntaLarga.prototype = new Pregunta();
 
 PreguntaLarga.prototype.constructor = PreguntaLarga;
 
-PreguntaLarga.prototype.get_tipo = function(){
-  return this.tipo_;
+PreguntaLarga.prototype.get_area = function(){
+  return this.area_;
 }
 
 PreguntaLarga.prototype.get_pregunta = function(){
